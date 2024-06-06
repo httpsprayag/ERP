@@ -1,0 +1,36 @@
+{
+  "name": "erp",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"cd backend && yarn run start\" \"cd frontend && yarn run start\"",
+    "lint:backend": "cd backend && yarn lint",
+    "format:backend": "cd backend && yarn prettier",
+    "lint:frontend": "cd frontend && yarn lint",
+    "format:frontend": "cd frontend && yarn prettier",
+    "fix": "cd backend && yarn lint:fix && yarn prettier:fix && cd ../frontend && yarn lint:fix && yarn prettier:fix",
+    "prepare": "husky"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "lint-staged": "^15.2.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn run lint:backend",
+      "yarn run format:backend"
+    ],
+    "*.jsx": [
+      "yarn run lint:frontend",
+      "yarn run format:frontend"
+    ]
+  },
+  "dependencies": {
+    "@mui/x-date-pickers": "^7.4.0",
+    "dayjs": "^1.11.11",
+    "husky": "^9.0.11",
+    "react-select": "^5.8.0",
+    "yup": "^1.4.0"
+  }
+}
